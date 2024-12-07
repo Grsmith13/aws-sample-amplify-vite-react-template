@@ -9,22 +9,35 @@ export default function App() {
 
   useEffect(() => {}, []);
 
-  // const createTodo = async () => {
-  //   await client.models.Todo.create({
-  //     content: window.prompt("Todo content?"),
-  //     isDone: false,
-  //   });
+  const createTodo = async () => {
+    await client.models.Todo.create({
+      content: window.prompt("Todo content?"),
+      isDone: false,
+    });
+  };
 
-  // };
+  function deleteTodo(id: string) {
+    client.models.Todo.delete({ id });
+  }
 
   return (
-    <div>
-      {/* <button onClick={createTodo}>Add new todo</button> */}
+    <main>
+      <h1>My todos</h1>
+      <button onClick={createTodo}>+ new</button>
       <ul>
-        {/* {todos.map(({ id, content }) => (
-          <li key={id}>{content}</li>
-        ))} */}
+        {todos.map((todo) => (
+          <li onClick={() => deleteTodo(todo.id)} key={todo.id}>
+            {todo.content}
+          </li>
+        ))}
       </ul>
-    </div>
+      <div>
+        🥳 App successfully hosted. Try creating a new todo.
+        <br />
+        <a href="https://docs.amplify.aws/react/start/quickstart/">
+          Review next step of this tutorial.
+        </a>
+      </div>
+    </main>
   );
 }
