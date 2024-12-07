@@ -7,9 +7,9 @@ const schema = a.schema({
     })
     .authorization(allow => [allow.publicApiKey()]),
 
-    // YGO_table: a.customType({
-    //   CardID: a.id().required(),
-    // })
+    YGO_table: a.customType({
+      CardID: a.id().required(),
+    })
 });
 
 export type Schema = ClientSchema<typeof schema>;
